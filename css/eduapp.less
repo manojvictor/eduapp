@@ -19,7 +19,7 @@ hr {
 }
 
 hr.light {
-    border-color: white;
+    border-color: @white;
 }
 
 a {
@@ -31,12 +31,7 @@ a {
     }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6 {
     .sans-serif-font;
 }
 
@@ -52,11 +47,11 @@ p {
 
 .bg-dark {
     background-color: @theme-dark;
-    color: white;
+    color: @white;
 }
 
 .text-faded {
-    color: fade(white, 70%);
+    color: fade(@white, 70%);
 }
 
 section {
@@ -74,7 +69,7 @@ aside {
 // Navigation
 
 .navbar-default {
-    background-color: white;
+    .gradient;
     border-color: fade(@theme-dark, 5%);
     .sans-serif-font;
     .transition-all;
@@ -82,17 +77,19 @@ aside {
         color: @theme-primary;
         .sans-serif-font;
         font-weight: 700;
-        text-transform: uppercase;
         &:hover,
         &:focus {
             color: darken(@theme-primary, 10%);
         }
     }
     .nav {
+        padding: 15px 0;
         > li {
+            > p {
+                padding: 0 5px;                
+            }
             > a,
             > a:focus {
-                text-transform: uppercase;
                 font-weight: 700;
                 font-size: 13px;
                 color: @theme-dark;
@@ -103,7 +100,7 @@ aside {
             &.active {
                 > a,
                 > a:focus {
-                    color: @theme-primary !important;
+                    color: @white !important;
                     background-color: transparent;
                     &:hover {
                         background-color: transparent;
@@ -112,28 +109,40 @@ aside {
             }
         }
     }
-    @media (min-width: 768px) {
-        background-color: transparent;
-        border-color: fade(white, 30%);
+    @media (max-width: 479px) {
         .navbar-header .navbar-brand {
-            color: fade(white, 70%);
+            color: @theme-primary;
+            .sans-serif-font;
+            font-weight: 700;
+            width: 75%;
+            padding: 5px 10px;
+            img {
+                width: 80%;
+                display: inline;
+            }
+        }
+    }
+    @media (min-width: 768px) {
+        .gradient;
+        .navbar-header .navbar-brand {
+            color: fade(@white, 70%);
             &:hover,
             &:focus {
-                color: white;
+                color: @white;
             }
         }
         .nav > li > a,
         .nav > li > a:focus {
-            color: fade(white, 70%);
+            color: fade(@white, 70%);
             &:hover {
-                color: white;
+                color: @white;
             }
         }
         &.affix {
-            background-color: white;
+            background-color: @white;
             border-color: fade(@theme-dark, 5%);
             .navbar-header .navbar-brand {
-                color: @theme-primary;
+                color: fade(@white, 70%);
                 font-size: 14px;
                 &:hover,
                 &:focus {
@@ -142,9 +151,9 @@ aside {
             }
             .nav > li > a,
             .nav > li > a:focus {
-                color: @theme-dark;
+                color: fade(@white, 70%);
                 &:hover {
-                    color: @theme-primary;
+                    color: @white;
                 }
             }
         }
@@ -161,16 +170,14 @@ header {
     background-position: center;
     background-image: url('../img/header.jpg');
     text-align: center;
-    color: white;
+    color: @white;
     .header-content {
         position: relative;
         text-align: center;
         padding: 100px 15px 100px;
-        width: 100%;
         .header-content-inner {
             h1 {
-                font-weight: 700;
-                text-transform: uppercase;
+                color: fade(@white, 95%);                
                 margin-top: 0;
                 margin-bottom: 0;
             }
@@ -179,21 +186,21 @@ header {
             }
             p {
                 font-weight: 300;
-                color: fade(white, 70%);
-                font-size: 16px;
+                color: @white;
+                font-size: 18px;
                 margin-bottom: 50px;
             }
         }
     }
     @media (min-width: 768px) {
-        min-height: 100%;
+        min-height: 560px;
         .header-content {
             position: absolute;
             top: 50%;
             -webkit-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
-            padding: 0 50px;
+            padding: 0 100px;
             .header-content-inner {
                 max-width: 1000px;
                 margin-left: auto;
@@ -203,6 +210,15 @@ header {
                     max-width: 80%;
                     margin-left: auto;
                     margin-right: auto;
+                }
+                .dash-link {
+                    color: @white;
+                    font-weight: 700;
+                    font-size: 18px;
+                    border-bottom: 1px solid @white;
+                    &:hover {
+                        text-decoration: none;
+                    }
                 }
             }
         }
@@ -232,7 +248,7 @@ header {
     max-width: 650px;
     margin: 0 auto;
     .portfolio-box-caption {
-        color: white;
+        color: @white;
         opacity: 0;
         display: block;
         background: fade(@theme-primary, 90%);
@@ -300,46 +316,56 @@ header {
 
 // Button Styles
 .btn-default {
-    .button-variant(@theme-dark;white;white);
+    .button-variant(@theme-dark;@white;@white);
 }
 
 .btn-primary {
-    .button-variant(white;@theme-primary;@theme-primary);
+    .button-variant(@white;@theme-primary;@theme-primary);
 }
 
 .btn {
     .sans-serif-font;
+    font-size: 13px;
     border: none;
-    border-radius: 300px;
     font-weight: 700;
-    text-transform: uppercase;
 }
 
 .btn-xl {
     padding: 15px 30px;
 }
 
+.btn-primary.gradient {
+    border: @btnBorder;
+    background: -moz-linear-gradient(top,  @startColor, @btnendColor); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(@startColor), color-stop(@btnendColor)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  @startColor,@btnendColor); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  @startColor,@btnendColor); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  @startColor,@btnendColor); /* IE10+ */
+    background: linear-gradient(to bottom,  @startColor,@btnendColor); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@startColor', endColorstr='@btnendColor',GradientType=0 ); /* IE6-9 */
+}
+
 // Extras
 // -- Highlight Color Customization
 ::-moz-selection {
-    color: white;
+    color: @white;
     text-shadow: none;
     background: @theme-dark;
 }
 
 ::selection {
-    color: white;
+    color: @white;
     text-shadow: none;
     background: @theme-dark;
 }
 
 img::selection {
-    color: white;
+    color: @white;
     background: transparent;
 }
 
 img::-moz-selection {
-    color: white;
+    color: @white;
     background: transparent;
 }
 
