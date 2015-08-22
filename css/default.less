@@ -1,0 +1,105 @@
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    font-family: 'Raleway-Regular';
+    webkit-tap-highlight-color: @theme-dark;
+}
+hr {
+    border-color: @theme-primary;
+    border-width: 3px;
+    max-width: 50px;
+    &.light {
+        border-color: @white;
+    }
+}
+a {
+    .transition-all;
+    color: @theme-primary;
+    &:hover,
+    &:focus {
+        color: darken(@theme-primary, 10%);
+    }
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Raleway-Regular';
+}
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.bg-primary {
+    background-color: @text-primary;
+}
+.no-padding {
+    padding: 0;
+}
+
+// Bootstrap Overrides
+.text-primary {
+    color: @text-primary;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+
+// Button Styles
+.btn-default {
+    .button-variant(@theme-dark;@white;@white);
+}
+
+.btn-primary {
+    .button-variant(@white;@theme-primary;@theme-primary);
+}
+
+.btn {
+    font-size: 13px;
+    border: none;
+    font-weight: 700;
+}
+
+.btn-xl {
+    padding: 15px 30px;
+}
+
+.btn-primary {
+    &.gradient {
+        border: @btnBorder;
+        background: -moz-linear-gradient(top,  @startColor, @btnendColor); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(@startColor), color-stop(@btnendColor)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  @startColor,@btnendColor); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  @startColor,@btnendColor); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  @startColor,@btnendColor); /* IE10+ */
+        background: linear-gradient(to bottom,  @startColor,@btnendColor); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@startColor', endColorstr='@btnendColor',GradientType=0 ); /* IE6-9 */
+    }
+}
+
+// Extras
+// -- Highlight Color Customization
+::-moz-selection {
+    color: @white;
+    text-shadow: none;
+    background: @theme-dark;
+}
+
+::selection {
+    color: @white;
+    text-shadow: none;
+    background: @theme-dark;
+}
+
+img::selection {
+    color: @white;
+    background: transparent;
+}
+
+img::-moz-selection {
+    color: @white;
+    background: transparent;
+}
